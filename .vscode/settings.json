@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "*.in": "c",
+        "pin_mux.h": "c",
+        "fsl_adapter_gpio.h": "c",
+        "clock_config.h": "c",
+        "fsl_debug_console.h": "c"
+    }
+}

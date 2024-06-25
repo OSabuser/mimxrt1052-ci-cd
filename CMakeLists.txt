@@ -1,55 +1,52 @@
-cmake_minimum_required(VERSION 3.15.3)
+cmake_minimum_required(VERSION 3.30.0)
 
-set(CMAKE_VERBOSE_MAKEFILE OFF)
-
-# Path to toolchain file. This one has to be before 'project()' below
-set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/armgcc.cmake)
-
-# Path to ld script file
-set(LINKER_FILE ${CMAKE_SOURCE_DIR}/device/template_project_debug.ld)
-set(PROJECT_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-
-
-
-
-project(gpio_led_output)
-set(EXECUTABLE ${PROJECT_NAME}.elf)
+project(main_programm VERSION "0.1")
 
 enable_language(C ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 
-include(${PROJECT_ROOT_DIR}/settings.cmake)
+set(EXECUTABLE ${PROJECT_NAME}.elf)
+
+
+# Set version info header
+set(PROJECT_CODE_LETTER "B")
+configure_file(${PROJECT_SOURCE_DIR}/config.h.in ${PROJECT_SOURCE_DIR}/source/config.h @ONLY)
+
+
+# Path to ld script file
+set(LINKER_FILE ${PROJECT_SOURCE_DIR}/device/template_project_debug.ld)
+
+
+include(${PROJECT_SOURCE_DIR}/settings.cmake)
+
+
 
 # List of source files
 set(SRC_FILES 
-        "${PROJECT_ROOT_DIR}/board/pin_mux.c"
-        "${PROJECT_ROOT_DIR}/board/dcd.c"
-        "${PROJECT_ROOT_DIR}/board/clock_config.c"
-        "${PROJECT_ROOT_DIR}/board/board.c"
-        "${PROJECT_ROOT_DIR}/component/uart/fsl_adapter_lpuart.c"
-        "${PROJECT_ROOT_DIR}/component/lists/fsl_component_generic_list.c"
-        "${PROJECT_ROOT_DIR}/device/system_MIMXRT1052.c"
-        "${PROJECT_ROOT_DIR}/device/startup_mimxrt1052.c"
-        "${PROJECT_ROOT_DIR}/drivers/fsl_lpuart.c"
-        "${PROJECT_ROOT_DIR}/drivers/fsl_gpio.c"
-        "${PROJECT_ROOT_DIR}/drivers/fsl_common_arm.c"
-        "${PROJECT_ROOT_DIR}/drivers/fsl_common.c"
-        "${PROJECT_ROOT_DIR}/drivers/fsl_clock.c"
-        "${PROJECT_ROOT_DIR}/source/gpio_led_output.c"
-        "${PROJECT_ROOT_DIR}/utilities/fsl_str.c"
-        "${PROJECT_ROOT_DIR}/utilities/fsl_memcpy.S"
-        "${PROJECT_ROOT_DIR}/utilities/fsl_debug_console.c"
-        "${PROJECT_ROOT_DIR}/utilities/fsl_assert.c"
-        "${PROJECT_ROOT_DIR}/xip/fsl_flexspi_nor_boot.c"
-        "${PROJECT_ROOT_DIR}/xip/evkbimxrt1050_flexspi_nor_config.c"
+        "${PROJECT_SOURCE_DIR}/board/pin_mux.c"
+        "${PROJECT_SOURCE_DIR}/board/dcd.c"
+        "${PROJECT_SOURCE_DIR}/board/clock_config.c"
+        "${PROJECT_SOURCE_DIR}/board/board.c"
+        "${PROJECT_SOURCE_DIR}/device/system_MIMXRT1052.c"
+        "${PROJECT_SOURCE_DIR}/device/startup_mimxrt1052.c"
+        "${PROJECT_SOURCE_DIR}/drivers/fsl_gpio.c"
+        "${PROJECT_SOURCE_DIR}/drivers/fsl_common_arm.c"
+        "${PROJECT_SOURCE_DIR}/drivers/fsl_common.c"
+        "${PROJECT_SOURCE_DIR}/drivers/fsl_clock.c"
+        "${PROJECT_SOURCE_DIR}/source/main.c"
+        "${PROJECT_SOURCE_DIR}/utilities/fsl_str.c"
+        "${PROJECT_SOURCE_DIR}/utilities/fsl_memcpy.S"
+        "${PROJECT_SOURCE_DIR}/utilities/fsl_debug_console.c"
+        "${PROJECT_SOURCE_DIR}/utilities/fsl_assert.c"
+        "${PROJECT_SOURCE_DIR}/xip/fsl_flexspi_nor_boot.c"
+        "${PROJECT_SOURCE_DIR}/xip/evkbimxrt1050_flexspi_nor_config.c"
 )
 
 
 # Set output bin directory
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_ROOT_DIR}/build/binaries)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${EXECUTABLE_OUTPUT_PATH})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build/binaries)
 
 # Build the executable based on the source files
 add_executable(${EXECUTABLE} ${SRC_FILES})
@@ -60,9 +57,11 @@ if(${LIBRARY_TYPE} STREQUAL "REDLIB")
     MESSAGE(STATUS "REDLIB WAS FOUND: $ENV{ARMGCC_DIR}/redlib/include")
 endif()
 
+
 # List of compiler defines, prefix with -D compiler option
 target_compile_definitions(${EXECUTABLE} PRIVATE
-        -DXIP_BOOT_HEADER_DCD_ENABLE=0 
+        -DSDK_DEBUGCONSOLE_UART 
+        -DXIP_BOOT_HEADER_DCD_ENABLE=0
         -DXIP_EXTERNAL_FLASH=1 
         -DXIP_BOOT_HEADER_ENABLE=0 
         -DMCUXPRESSO_SDK 
@@ -77,14 +76,13 @@ target_compile_definitions(${EXECUTABLE} PRIVATE
         -DCPU_MIMXRT1052CVJ5B_cm7 
 )
 
+
+
 # List of include directories
 target_include_directories(${EXECUTABLE} PRIVATE 
         source
         utilities
-        drivers
         device
-        component/uart
-        component/lists
         xip
         CMSIS
         board
@@ -113,6 +111,10 @@ target_link_options(${EXECUTABLE} PRIVATE
         -Wl,--gc-sections 
         -Wl,-print-memory-usage
 )
+
+
+# Include additional software components
+include(${PROJECT_SOURCE_DIR}/modules_config.cmake)
 
 
 # Optional: Print executable size as part of the post build process

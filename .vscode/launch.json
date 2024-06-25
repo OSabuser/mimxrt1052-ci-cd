@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/binaries/main_programm.elf",
+            "name": "Debug Microcontroller",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "jlink",
+            "serverpath": "C:/Program Files/SEGGER/JLink_V796g/JLinkGDBServerCL.exe",
+            "armToolchainPath": "C:/ARM32/toolchain/12.3-Rel1-NXP/bin",
+            "device": "MIMXRT1052xxxxB",
+            "interface": "swd",
+            "serialNumber": "", // add J-Link serial number if having multiple attached the same time.
+            "svdFile": "${workspaceRoot}/device/MIMXRT1052.svd",
+
+        }
+    ]
+}

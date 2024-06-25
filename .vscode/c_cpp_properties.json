@@ -1,0 +1,33 @@
+{
+    "configurations": [
+        {
+            "name": "ARM32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/components/**"
+            ],
+            "defines": [
+                "SDK_DEBUGCONSOLE_UART", 
+                "XIP_BOOT_HEADER_DCD_ENABLE=0", 
+                "XIP_EXTERNAL_FLASH=1", 
+                "XIP_BOOT_HEADER_ENABLE=0",  
+                "MCUXPRESSO_SDK",  
+                "SDRAM_MPU_INIT=0",  
+                "SKIP_SYSCLK_INIT=0",  
+                "PRINTF_FLOAT_ENABLE=0",  
+                "CR_INTEGER_PRINTF",  
+                "__MCUXPRESSO",  
+                "__USE_CMSIS", 
+                "DEBUG",  
+                "CPU_MIMXRT1052CVJ5B",  
+                "CPU_MIMXRT1052CVJ5B_cm7" 
+            ],
+            "windowsSdkVersion": "10.0.22621.0",
+            "compilerPath": "C:/ARM32/toolchain/12.3-Rel1-NXP/bin/arm-none-eabi-gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-arm"
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,762 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "binaries/main_programm.elf"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_options",
+			"target_compile_options",
+			"target_compile_definitions",
+			"target_include_directories",
+			"include",
+			"include_if_use",
+			"target_sources"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"drivers/driver_clock.cmake",
+			"settings.cmake",
+			"modules_config.cmake",
+			"components/hal_gpio_driver/hal_gpio_driver.cmake",
+			"components/hal_uart_driver/hal_uart_driver.cmake",
+			"drivers/driver_lpuart.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 52,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 105,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 92,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 62,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 56,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 82,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 117,
+				"parent" : 0
+			},
+			{
+				"file" : 3,
+				"parent" : 7
+			},
+			{
+				"command" : 6,
+				"file" : 3,
+				"line" : 50,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 31,
+				"parent" : 9
+			},
+			{
+				"file" : 1,
+				"parent" : 10
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 12,
+				"parent" : 11
+			},
+			{
+				"command" : 6,
+				"file" : 3,
+				"line" : 60,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 31,
+				"parent" : 13
+			},
+			{
+				"file" : 4,
+				"parent" : 14
+			},
+			{
+				"command" : 4,
+				"file" : 4,
+				"line" : 11,
+				"parent" : 15
+			},
+			{
+				"command" : 6,
+				"file" : 3,
+				"line" : 61,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 31,
+				"parent" : 17
+			},
+			{
+				"file" : 5,
+				"parent" : 18
+			},
+			{
+				"command" : 4,
+				"file" : 5,
+				"line" : 10,
+				"parent" : 19
+			},
+			{
+				"command" : 6,
+				"file" : 3,
+				"line" : 55,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 31,
+				"parent" : 21
+			},
+			{
+				"file" : 6,
+				"parent" : 22
+			},
+			{
+				"command" : 7,
+				"file" : 6,
+				"line" : 8,
+				"parent" : 23
+			},
+			{
+				"command" : 7,
+				"file" : 4,
+				"line" : 7,
+				"parent" : 15
+			},
+			{
+				"command" : 7,
+				"file" : 5,
+				"line" : 6,
+				"parent" : 19
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -std=gnu11"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-std=gnu11"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-O0"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-fno-common"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-fmerge-constants"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-g3"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-ffunction-sections"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-fdata-sections"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-ffreestanding"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-fno-builtin"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-fstack-usage"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-mcpu=cortex-m7"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-mthumb"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 4,
+					"define" : "CPU_MIMXRT1052CVJ5B"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "CPU_MIMXRT1052CVJ5B_cm7"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "CR_INTEGER_PRINTF"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "DEBUG"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "MCUXPRESSO_SDK"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "PRINTF_FLOAT_ENABLE=0"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "SDK_DEBUGCONSOLE_UART"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "SDRAM_MPU_INIT=0"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "SKIP_SYSCLK_INIT=0"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "XIP_BOOT_HEADER_DCD_ENABLE=0"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "XIP_BOOT_HEADER_ENABLE=0"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "XIP_EXTERNAL_FLASH=1"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "__MCUXPRESSO"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "__USE_CMSIS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 5,
+					"path" : "C:/ARM32/toolchain/12.3-Rel1-NXP/redlib/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/source"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/utilities"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/device"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/xip"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/CMSIS"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/board"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/drivers/."
+				},
+				{
+					"backtrace" : 16,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/components/hal_gpio_driver/."
+				},
+				{
+					"backtrace" : 20,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/components/hal_uart_driver/."
+				}
+			],
+			"language" : "C",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "11"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-std=gnu11"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-O0"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-fno-common"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-fmerge-constants"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-g3"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-ffunction-sections"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-fdata-sections"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-ffreestanding"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-fno-builtin"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-fstack-usage"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-mcpu=cortex-m7"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-mthumb"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 4,
+					"define" : "CPU_MIMXRT1052CVJ5B"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "CPU_MIMXRT1052CVJ5B_cm7"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "CR_INTEGER_PRINTF"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "DEBUG"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "MCUXPRESSO_SDK"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "PRINTF_FLOAT_ENABLE=0"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "SDK_DEBUGCONSOLE_UART"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "SDRAM_MPU_INIT=0"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "SKIP_SYSCLK_INIT=0"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "XIP_BOOT_HEADER_DCD_ENABLE=0"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "XIP_BOOT_HEADER_ENABLE=0"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "XIP_EXTERNAL_FLASH=1"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "__MCUXPRESSO"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "__USE_CMSIS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 5,
+					"path" : "C:/ARM32/toolchain/12.3-Rel1-NXP/redlib/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/source"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/utilities"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/device"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/xip"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/CMSIS"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/board"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/drivers/."
+				},
+				{
+					"backtrace" : 16,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/components/hal_gpio_driver/."
+				},
+				{
+					"backtrace" : 20,
+					"path" : "C:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/components/hal_uart_driver/."
+				}
+			],
+			"language" : "ASM",
+			"sourceIndexes" : 
+			[
+				12
+			]
+		}
+	],
+	"id" : "main_programm.elf::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-TC:/Development/MIMXRT1052/VSCODE/cmake_template/template_project/device/template_project_debug.ld",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-mcpu=cortex-m7",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-mthumb",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-Xlinker",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-no-warn-rwx-segments",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-Wl,-Map=main_programm.map,--cref",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-Wl,--gc-sections",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-Wl,-print-memory-usage",
+				"role" : "flags"
+			}
+		],
+		"language" : "C"
+	},
+	"name" : "main_programm.elf",
+	"nameOnDisk" : "main_programm.elf",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19
+			]
+		},
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				12
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "board/pin_mux.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "board/dcd.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "board/clock_config.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "board/board.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "device/system_MIMXRT1052.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "device/startup_mimxrt1052.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "drivers/fsl_gpio.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "drivers/fsl_common_arm.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "drivers/fsl_common.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "drivers/fsl_clock.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "source/main.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "utilities/fsl_str.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "utilities/fsl_memcpy.S",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "utilities/fsl_debug_console.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "utilities/fsl_assert.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "xip/fsl_flexspi_nor_boot.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "xip/evkbimxrt1050_flexspi_nor_config.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 24,
+			"compileGroupIndex" : 0,
+			"path" : "drivers/fsl_lpuart.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 25,
+			"compileGroupIndex" : 0,
+			"path" : "components/hal_gpio_driver/fsl_adapter_igpio.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 26,
+			"compileGroupIndex" : 0,
+			"path" : "components/hal_uart_driver/fsl_adapter_lpuart.c",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}
