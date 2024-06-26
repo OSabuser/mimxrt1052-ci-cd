@@ -1,9 +1,24 @@
 {
+    // These settings tweaks to the cmake plugin will ensure
+    // that you debug using cortex-debug instead of trying to launch
+    // a binary on the host
+    "cmake.statusbar.advanced": {
+        "debug": {
+            "visibility": "hidden"
+        },
+        "launch": {
+            "visibility": "hidden"
+        },
+        "build": {
+            "visibility": "default"
+        },
+        "buildTarget": {
+            "visibility": "hidden"
+        }
+    },
+    "cmake.buildBeforeRun": true,
+    "cmake.configureOnOpen": false,
     "files.associations": {
-        "*.in": "c",
-        "pin_mux.h": "c",
-        "fsl_adapter_gpio.h": "c",
-        "clock_config.h": "c",
         "fsl_debug_console.h": "c"
-    }
+    },
 }

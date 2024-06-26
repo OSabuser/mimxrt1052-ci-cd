@@ -11,7 +11,7 @@ set(EXECUTABLE ${PROJECT_NAME}.elf)
 
 
 # Set version info header
-set(PROJECT_CODE_LETTER "B")
+set(PROJECT_CODE_LETTER "A")
 configure_file(${PROJECT_SOURCE_DIR}/config.h.in ${PROJECT_SOURCE_DIR}/source/config.h @ONLY)
 
 
@@ -31,10 +31,6 @@ set(SRC_FILES
         "${PROJECT_SOURCE_DIR}/board/board.c"
         "${PROJECT_SOURCE_DIR}/device/system_MIMXRT1052.c"
         "${PROJECT_SOURCE_DIR}/device/startup_mimxrt1052.c"
-        "${PROJECT_SOURCE_DIR}/drivers/fsl_gpio.c"
-        "${PROJECT_SOURCE_DIR}/drivers/fsl_common_arm.c"
-        "${PROJECT_SOURCE_DIR}/drivers/fsl_common.c"
-        "${PROJECT_SOURCE_DIR}/drivers/fsl_clock.c"
         "${PROJECT_SOURCE_DIR}/source/main.c"
         "${PROJECT_SOURCE_DIR}/utilities/fsl_str.c"
         "${PROJECT_SOURCE_DIR}/utilities/fsl_memcpy.S"
@@ -54,7 +50,7 @@ add_executable(${EXECUTABLE} ${SRC_FILES})
 # Link REDLIB
 if(${LIBRARY_TYPE} STREQUAL "REDLIB")
     target_include_directories(${EXECUTABLE} PRIVATE $ENV{ARMGCC_DIR}/redlib/include)
-    MESSAGE(STATUS "REDLIB WAS FOUND: $ENV{ARMGCC_DIR}/redlib/include")
+    MESSAGE(STATUS "REDLIB WAS FOUND: /../$ENV{ARMGCC_DIR}/redlib/include")
 endif()
 
 
@@ -112,20 +108,22 @@ target_link_options(${EXECUTABLE} PRIVATE
         -Wl,-print-memory-usage
 )
 
-
 # Include additional software components
 include(${PROJECT_SOURCE_DIR}/modules_config.cmake)
 
 
-# Optional: Print executable size as part of the post build process
-add_custom_command(TARGET ${EXECUTABLE}
-        POST_BUILD
-        COMMAND ${CMAKE_SIZE_UTIL} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${EXECUTABLE})
+# Print executable size as part of the post build process
+add_custom_command(
+        TARGET ${EXECUTABLE} POST_BUILD  
+        COMMAND ${CMAKE_SIZE_UTIL} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${EXECUTABLE}
+)
 
-# Optional: Create hex, bin and S-Record files after the build
-add_custom_command(TARGET ${EXECUTABLE}
-        POST_BUILD
+# Create S-Record file after the build
+add_custom_command(
+        TARGET ${EXECUTABLE} POST_BUILD
         COMMAND cd ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
-        COMMAND ${CMAKE_OBJCOPY} -O srec --srec-len=64 ${EXECUTABLE} ${PROJECT_NAME}.s19
-        COMMAND ${CMAKE_OBJCOPY} -O ihex ${EXECUTABLE} ${PROJECT_NAME}.hex
-        COMMAND ${CMAKE_OBJCOPY} -O binary ${EXECUTABLE} ${PROJECT_NAME}.bin)
+        COMMAND ${CMAKE_OBJCOPY} -O srec --srec-len=64 ${EXECUTABLE} ${PROJECT_NAME}.srec
+)
+
+include(${PROJECT_SOURCE_DIR}/deploy.cmake)
+deploy_target_to_board(${EXECUTABLE} false)     

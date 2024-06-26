@@ -1,0 +1,11 @@
+[
+    {
+      "name": "GCC 12.3.1 NXP",
+      "compilers": {
+        "C": "${env:ARMGCC_DIR}/arm-none-eabi-gcc.exe",
+        "CXX": "${env:ARMGCC_DIR}/arm-none-eabi-g++.exe"
+      },
+      "isTrusted": true,
+      "keep": true
+    }
+  ]

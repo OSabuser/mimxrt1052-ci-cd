@@ -12,7 +12,7 @@
 #include "fsl_debug_console.h"
 #include "fsl_adapter_gpio.h"
 #include "config.h"
-
+#include "fsl_adapter_timer.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -39,6 +39,34 @@ int main(void)
     BOARD_InitBootPins();
     BOARD_InitBootClocks();
     BOARD_InitDebugConsole();
+
+
+    TIMER_HANDLE_DEFINE(alive_routine);
+    hal_timer_config_t alive_timer_config = {
+        .timeout = 1000000U,
+        .srcClock_Hz = BOARD_BootClockRUN,
+        .instance = 0,
+        .clockSrcSelect = kCLOCK_PerClk
+
+    };
+
+    typedef struct _hal_timer_config
+{
+    uint32_t timeout;                     /*!< Timeout of the timer, should use microseconds, for example: if set timeout to 1000, mean 1000 microseconds
+                                               interval would generate timer timeout interrupt*/
+    uint32_t srcClock_Hz;                 /*!< Source clock of the timer */
+    uint8_t  instance;                    /*!< Hardware timer module instance, for example: if you want use FTM0,then the instance is configured to 0, if
+                                               you want use FTM2 hardware timer, then configure the instance to 2, detail information please refer to the
+                                               SOC corresponding RM.Invalid instance value will cause initialization failure. */
+
+    uint8_t  clockSrcSelect;              /*!< Select clock source. It is for timer clock select, if the lptmr does not
+                                               want to use the default clock source*/
+} hal_timer_config_t;
+
+
+
+
+    HAL_TimerInit(alive_routine, &alive_timer_config);
 
     // /* Init output LED GPIO. */
     GPIO_HANDLE_DEFINE(led_1);
