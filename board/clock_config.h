@@ -1,3 +1,6 @@
+/*
+** Akimov Dmitry 2024 MU LLC
+*/
 #ifndef _CLOCK_CONFIG_H_
 #define _CLOCK_CONFIG_H_
 

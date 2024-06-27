@@ -1,4 +1,7 @@
 /*
+** Akimov Dmitry 2024 MU LLC
+*/
+/*
  * How to setup clock using clock driver functions:
  *
  * 1. Call CLOCK_InitXXXPLL() to configure corresponding PLL clock.
@@ -17,10 +20,9 @@
 !!GlobalInfo
 product: Clocks v13.0
 processor: MIMXRT1052xxxxB
-package_id: MIMXRT1052DVL6B
+package_id: MIMXRT1052CVJ5B
 mcu_data: ksdk2_0
 processor_version: 15.0.1
-board: IMXRT1050-EVKB
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS **********/
 
 #include "clock_config.h"

@@ -1,0 +1,8 @@
+#ifndef HEARTBEAT_CONFIG
+#define HEARTBEAT_CONFIG
+
+#define USE_WATCHDOG    1
+#define HEARTBEAT_PERIOD_MSEC 500
+#define WATCHDOG_TIMEOUT_SEC   10
+
+#endif

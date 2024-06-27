@@ -2,8 +2,7 @@
 <configuration name="MIMXRT1052xxxxB" xsi:schemaLocation="http://mcuxpresso.nxp.com/XSD/mex_configuration_15 http://mcuxpresso.nxp.com/XSD/mex_configuration_15.xsd" uuid="33bc67bc-de2d-41c5-b799-1a5dd8f147b6" version="15" xmlns="http://mcuxpresso.nxp.com/XSD/mex_configuration_15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <common>
       <processor>MIMXRT1052xxxxB</processor>
-      <package>MIMXRT1052DVL6B</package>
-      <board>IMXRT1050-EVKB</board>
+      <package>MIMXRT1052CVJ5B</package>
       <mcu_data>ksdk2_0</mcu_data>
       <cores selected="core0">
          <core name="Cortex-M7F" id="core0" description="M7 core"/>
@@ -12,10 +11,19 @@
    </common>
    <preferences>
       <validate_boot_init_only>true</validate_boot_init_only>
-      <generate_extended_information>false</generate_extended_information>
+      <generate_extended_information>true</generate_extended_information>
       <generate_code_modified_registers_only>false</generate_code_modified_registers_only>
+      <custom_copyright>
+         <text>/*
+** Akimov Dmitry 2024 MU LLC
+*/</text>
+         <enabled>true</enabled>
+      </custom_copyright>
       <update_include_paths>true</update_include_paths>
-      <generate_registers_defines>false</generate_registers_defines>
+      <generate_registers_defines>true</generate_registers_defines>
+      <project_links>
+         <project_link path="../../../../../nxp/MCUXpressoIDE_11.9.0_2144/ide/tools"/>
+      </project_links>
    </preferences>
    <tools>
       <pins name="Pins" version="15.0" enabled="true" update_project_code="true">
@@ -28,6 +36,7 @@
             <pin_labels>
                <pin_label pin_num="M4" pin_signal="GPIO_SD_B1_03" label="LED1" identifier="FlexSPI_D0_B;ALIVE_LED"/>
                <pin_label pin_num="P2" pin_signal="GPIO_SD_B1_04" label="LED2" identifier="FlexSPI_CLK_B;PROCESS_LED"/>
+               <pin_label pin_num="L4" pin_signal="GPIO_SD_B1_07" label="USER_0" identifier="FlexSPI_CLK;TEST_PIN"/>
             </pin_labels>
             <power_domains/>
          </pins_profile>
@@ -55,6 +64,11 @@
                         <data>true</data>
                      </feature>
                   </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.igpio" description="Pins initialization requires the IGPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
                </dependencies>
                <pins>
                   <pin peripheral="LPUART1" signal="TX" pin_num="K14" pin_signal="GPIO_AD_B0_12">
@@ -74,12 +88,14 @@
                   <pin peripheral="GPIO3" signal="gpio_io, 03" pin_num="M4" pin_signal="GPIO_SD_B1_03">
                      <pin_features>
                         <pin_feature name="identifier" value="ALIVE_LED"/>
+                        <pin_feature name="direction" value="OUTPUT"/>
                         <pin_feature name="pull_up_down_config" value="Pull_Up_47K_Ohm"/>
                      </pin_features>
                   </pin>
                   <pin peripheral="GPIO3" signal="gpio_io, 04" pin_num="P2" pin_signal="GPIO_SD_B1_04">
                      <pin_features>
                         <pin_feature name="identifier" value="PROCESS_LED"/>
+                        <pin_feature name="direction" value="OUTPUT"/>
                         <pin_feature name="pull_up_down_config" value="Pull_Up_47K_Ohm"/>
                      </pin_features>
                   </pin>
@@ -91,6 +107,7 @@
          <generated_project_files>
             <file path="board/clock_config.c" update_enabled="true"/>
             <file path="board/clock_config.h" update_enabled="true"/>
+            <file path="board/clock_registers.h" update_enabled="true"/>
          </generated_project_files>
          <clocks_profile>
             <processor_version>15.0.1</processor_version>
@@ -510,13 +527,83 @@
             </dcdx_configuration>
          </dcdx_configurations>
       </dcdx>
-      <periphs name="Peripherals" version="14.0" enabled="false" update_project_code="true">
-         <generated_project_files/>
+      <periphs name="Peripherals" version="14.0" enabled="true" update_project_code="true">
+         <generated_project_files>
+            <file path="board/peripherals.c" update_enabled="true"/>
+            <file path="board/peripherals.h" update_enabled="true"/>
+         </generated_project_files>
          <peripherals_profile>
-            <processor_version>N/A</processor_version>
+            <processor_version>15.0.1</processor_version>
          </peripherals_profile>
-         <functional_groups/>
-         <components/>
+         <functional_groups>
+            <functional_group name="BOARD_InitPeripherals" uuid="57cfe364-25f7-497b-bd63-75586814e142" called_from_default_init="true" id_prefix="" core="core0">
+               <description></description>
+               <options/>
+               <dependencies/>
+               <instances>
+                  <instance name="NVIC" uuid="a2699bf9-a9f8-422a-b055-4c0a5d11a227" type="nvic" type_id="nvic_57b5eef3774cc60acaede6f5b8bddc67" mode="general" peripheral="NVIC" enabled="true" comment="" custom_name_enabled="false" editing_lock="false">
+                     <config_set name="nvic">
+                        <array name="interrupt_table"/>
+                        <array name="interrupts"/>
+                     </config_set>
+                  </instance>
+                  <instance name="PIT" uuid="ec82d8cc-640e-4070-a5ff-cb78d6fe112f" type="pit" type_id="pit_ab54f91356454adb874dafbb69e655fd" mode="LPTMR_GENERAL" peripheral="PIT" enabled="false" comment="" custom_name_enabled="false" editing_lock="true">
+                     <config_set name="fsl_pit">
+                        <setting name="enableRunInDebug" value="false"/>
+                        <setting name="enableSharedInterrupt" value="true"/>
+                        <struct name="sharedInterrupt">
+                           <setting name="IRQn" value="PIT_IRQn"/>
+                           <setting name="enable_interrrupt" value="enabled"/>
+                           <setting name="enable_priority" value="true"/>
+                           <setting name="priority" value="3"/>
+                           <setting name="enable_custom_name" value="false"/>
+                        </struct>
+                        <struct name="timingConfig">
+                           <setting name="clockSource" value="BusInterfaceClock"/>
+                           <setting name="clockSourceFreq" value="ClocksTool_DefaultInit"/>
+                        </struct>
+                        <array name="channels">
+                           <struct name="0">
+                              <setting name="channel_id" value="CHANNEL_0"/>
+                              <setting name="channelNumber" value="0"/>
+                              <setting name="enableChain" value="false"/>
+                              <setting name="timerPeriod" value="1s"/>
+                              <setting name="startTimer" value="false"/>
+                              <setting name="enableInterrupt" value="true"/>
+                           </struct>
+                        </array>
+                     </config_set>
+                  </instance>
+               </instances>
+            </functional_group>
+         </functional_groups>
+         <components>
+            <component name="system" uuid="70315af3-1a26-4ef4-895c-2571c5e1859c" type_id="system_54b53072540eeeb8f8e9343e71f28176">
+               <config_set_global name="global_system_definitions">
+                  <setting name="user_definitions" value=""/>
+                  <setting name="user_includes" value=""/>
+                  <setting name="global_init" value=""/>
+               </config_set_global>
+            </component>
+            <component name="uart_cmsis_common" uuid="013d50e3-1956-4930-b435-c897e7335b36" type_id="uart_cmsis_common_9cb8e302497aa696fdbb5a4fd622c2a8">
+               <config_set_global name="global_USART_CMSIS_common" quick_selection="default"/>
+            </component>
+            <component name="msg" uuid="900b2979-e278-4f2b-af62-bd484c4dfcfb" type_id="msg_6e2baaf3b97dbeef01c0043275f9a0e7">
+               <config_set_global name="global_messages"/>
+            </component>
+            <component name="gpio_adapter_common" uuid="39863b94-8a15-4320-94f5-1c26e39e0ff0" type_id="gpio_adapter_common_57579b9ac814fe26bf95df0a384c36b6">
+               <config_set_global name="global_gpio_adapter_common" quick_selection="default"/>
+            </component>
+            <component name="generic_uart" uuid="16c95567-6913-4144-9918-1adaea8cbd01" type_id="generic_uart_8cae00565451cf2346eb1b8c624e73a6">
+               <config_set_global name="global_uart"/>
+            </component>
+            <component name="generic_enet" uuid="f34204a1-acff-4c40-b8a0-54e815956d0d" type_id="generic_enet_74db5c914f0ddbe47d86af40cb77a619">
+               <config_set_global name="global_enet"/>
+            </component>
+            <component name="generic_can" uuid="546a7ab5-9d03-433e-926e-76ff2d875fac" type_id="generic_can_1bfdd78b1af214566c1f23cf6a582d80">
+               <config_set_global name="global_can"/>
+            </component>
+         </components>
       </periphs>
       <tee name="TEE" version="6.0" enabled="false" update_project_code="true">
          <generated_project_files/>

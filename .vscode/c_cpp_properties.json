@@ -4,7 +4,9 @@
             "name": "ARM32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/components/**"
+                "${workspaceFolder}/components/**",
+                "${workspaceFolder}/drivers/**",
+                "${workspaceFolder}/components/heartbeat"
             ],
             "defines": [
                 "SDK_DEBUGCONSOLE_UART", 
@@ -20,10 +22,11 @@
                 "__USE_CMSIS", 
                 "DEBUG",  
                 "CPU_MIMXRT1052CVJ5B",  
-                "CPU_MIMXRT1052CVJ5B_cm7" 
+                "CPU_MIMXRT1052CVJ5B_cm7",
+                "DEBUG_CONSOLE_TRANSFER_NON_BLOCKING "
             ],
             "windowsSdkVersion": "10.0.22621.0",
-            "compilerPath": "C:/ARM32/toolchain/12.3-Rel1-NXP/bin/arm-none-eabi-gcc.exe",
+            "compilerPath": "${env:ARMGCC_DIR}/arm-none-eabi-gcc.exe",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "gcc-arm"

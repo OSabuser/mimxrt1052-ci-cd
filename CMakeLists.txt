@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.30.0)
 
-project(main_programm VERSION "0.1")
+project(main_programm VERSION "0.2")
 
 enable_language(C ASM)
 set(CMAKE_C_STANDARD 11)
@@ -11,8 +11,8 @@ set(EXECUTABLE ${PROJECT_NAME}.elf)
 
 
 # Set version info header
-set(PROJECT_CODE_LETTER "A")
-configure_file(${PROJECT_SOURCE_DIR}/config.h.in ${PROJECT_SOURCE_DIR}/source/config.h @ONLY)
+set(PROJECT_CODE_LETTER "X")
+configure_file(${PROJECT_SOURCE_DIR}/manufacturing_info.h.in ${PROJECT_SOURCE_DIR}/source/manufacturing_info.h @ONLY)
 
 
 # Path to ld script file
@@ -69,9 +69,9 @@ target_compile_definitions(${EXECUTABLE} PRIVATE
         -D__USE_CMSIS 
         -DDEBUG 
         -DCPU_MIMXRT1052CVJ5B 
-        -DCPU_MIMXRT1052CVJ5B_cm7 
+        -DCPU_MIMXRT1052CVJ5B_cm7
+        -DDEBUG_CONSOLE_TRANSFER_NON_BLOCKING 
 )
-
 
 
 # List of include directories
@@ -126,4 +126,4 @@ add_custom_command(
 )
 
 include(${PROJECT_SOURCE_DIR}/deploy.cmake)
-deploy_target_to_board(${EXECUTABLE} false)     
+deploy_target_to_board(${EXECUTABLE})     
