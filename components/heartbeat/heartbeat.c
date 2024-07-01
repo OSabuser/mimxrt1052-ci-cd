@@ -5,12 +5,18 @@
 #include "fsl_common_arm.h"
 #include "heartbeat_config.h"
 
+
 /* Possible values are (GPIO3, PIN3), (GPIO3, PIN4) !*/
 #define HEARTBEAT_LED_PORT 3U
 #define HEARTBEAT_LED_PIN 3U
 
 #if USE_WATCHDOG
     #include "watchdog.h"
+#endif
+
+#if USE_LOGGING
+    #include <elog.h>
+    #define LOG_TAG    "heartbeat" /* Current sourcefile Tag */
 #endif
 
 static GPIO_HANDLE_DEFINE(heartbeat_led);
@@ -31,7 +37,7 @@ static void toggle_heartbeat_led(hal_gpio_handle_t gpio_handle)
 static void heartbeat_timer_routine(void *param)
 {
     toggle_heartbeat_led(param);
-
+ 
 #if USE_WATCHDOG
     feed_watchdog_timer();
 #endif
@@ -75,25 +81,44 @@ uint8_t start_heartbeat_routine(void)
 
     uint8_t reset_status = 0xFF;
 
-    DbgConsole_Printf("Enable the heartbeat routine.\r\n");
-    DbgConsole_Printf("Heartbeat period is %d ms. \r\n", HEARTBEAT_PERIOD_MSEC);
-
+#if USE_LOGGING
+    log_i("Enable the heartbeat routine.\r\n");
+    log_i("Heartbeat period is %d ms. \r\n", HEARTBEAT_PERIOD_MSEC);
+#endif
     init_heartbeat_led(heartbeat_led);
 
     init_heartbeat_tim(heartbeat_routine_timer, heartbeat_led, HEARTBEAT_PERIOD_MSEC);
 
 #if USE_WATCHDOG
-    DbgConsole_Printf("Watchdog is enabled.\r\n");
-    DbgConsole_Printf("Watchdog's timeout is %d s.\r\n", get_watchdog_sec_timeout_value());
+    #if USE_LOGGING
+        log_i("Watchdog is enabled.\r\n");
+        log_i("Watchdog's timeout is %d s.\r\n", get_watchdog_sec_timeout_value());
 
-    reset_status = get_system_reset_reason();
+        reset_status = get_system_reset_reason();
 
-    print_system_reset_reason(reset_status);
-
+        switch (reset_status)
+        {
+            case wRESET_BY_POWER_ON:
+                log_w("System was reseted by power on reset!\r\n");
+            break;
+            case wRESET_BY_TIMEOUT:
+                log_w("System was reseted by watchdog timeout!\r\n");
+            break;
+            case wRESET_BY_SOFTWARE:
+                log_w("System was reseted by software!\r\n");
+            break;
+            default:
+                log_w("System was reseted by undefined reason!\r\n");
+            break;
+        }
+    #endif
+    
     /* Start the BOARD_WATCHDOG_INSTANCE timer*/
     start_watchdog_timer();
 #else
-    DbgConsole_Printf("Watchdog is disabled.\r\n");
+    #if USE_LOGGING
+        log_i("Watchdog is disabled.\r\n");
+    #endif
 #endif
 
     return reset_status;

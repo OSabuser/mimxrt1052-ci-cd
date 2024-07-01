@@ -6,7 +6,8 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/components/**",
                 "${workspaceFolder}/drivers/**",
-                "${workspaceFolder}/components/heartbeat"
+                "${workspaceFolder}/components/heartbeat",
+                "${workspaceFolder}/middleware/easylogger/**"
             ],
             "defines": [
                 "SDK_DEBUGCONSOLE_UART", 
@@ -19,7 +20,8 @@
                 "PRINTF_FLOAT_ENABLE=0",  
                 "CR_INTEGER_PRINTF",  
                 "__MCUXPRESSO",  
-                "__USE_CMSIS", 
+                "__USE_CMSIS",
+                "SDK_DELAY_USE_DWT", 
                 "DEBUG",  
                 "CPU_MIMXRT1052CVJ5B",  
                 "CPU_MIMXRT1052CVJ5B_cm7",

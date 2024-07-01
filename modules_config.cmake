@@ -22,6 +22,7 @@ function(include_if_use module_name)
             message(STATUS "INCLUDE: ${loaded_file}\n")
             return()
         else()
+            message(STATUS "ERROR: ${module_name}.cmake wasn't found!\n")
             message(SEND_ERROR "ERROR: ${loaded_file}.cmake does not exist.\n")
         endif()
     else()
@@ -35,7 +36,7 @@ endfunction()
 # Root path's to additional component's source files
 set(COMPONENTS_DIR ${PROJECT_SOURCE_DIR}/components)
 set(DRIVERS_DIR ${PROJECT_SOURCE_DIR}/drivers)
-
+set(MIDDLEWARE_DIR ${PROJECT_SOURCE_DIR}/middleware)
 
 
 #*********************************************DRIVERS
@@ -53,8 +54,12 @@ set(HAS_COMPONENT_driver_lpuart true)
 set(HAS_COMPONENT_driver_pit true)
 # description: fsl_gpt driver
 set(HAS_COMPONENT_driver_gpt false)
-# description: fsl_wdog driver
+# description: fsl_wdog driver  ---> WATCHDOG
 set(HAS_COMPONENT_driver_wdog true)
+# description: fsl_ocotp driver  ---> BOARD ID
+set(HAS_COMPONENT_driver_ocotp true)
+# description: fsl_snvs_hp driver  ---> RTC
+set(HAS_COMPONENT_driver_snvs_hp true)
 
 #*********************************************COMPONENTS
 # description: HAL GPIO API
@@ -73,6 +78,16 @@ set(HAS_COMPONENT_serial_manager true)
 set(HAS_COMPONENT_generic_list true)
 # description: Heartbeat API
 set(HAS_COMPONENT_heartbeat true)
+# description: RTC API
+set(HAS_COMPONENT_rtc true)
+
+
+#*********************************************MIDDLEWARE
+# description: https://github.com/armink/EasyLogger/tree/master
+set(HAS_COMPONENT_easylogger true)
+
+
+
 
 
 
@@ -86,6 +101,8 @@ list(APPEND CMAKE_MODULE_PATH
     ${COMPONENTS_DIR}/tim_manager
     ${COMPONENTS_DIR}/serial_manager
     ${COMPONENTS_DIR}/heartbeat
+    ${COMPONENTS_DIR}/rtc
+    ${MIDDLEWARE_DIR}/easylogger 
     ${DRIVERS_DIR}
 )
 
@@ -100,6 +117,8 @@ include_if_use(driver_iomuxc)
 include_if_use(driver_lpuart)
 include_if_use(driver_pit)
 include_if_use(driver_wdog)
+include_if_use(driver_ocotp)
+include_if_use(driver_snvs_hp)
 
 # COMPONENTS
 include_if_use(hal_gpio)
@@ -109,4 +128,7 @@ include_if_use(generic_list)
 include_if_use(tim_manager)
 include_if_use(serial_manager)
 include_if_use(heartbeat)
+include_if_use(rtc)
 
+# MIDDLEWARE
+include_if_use(easylogger)

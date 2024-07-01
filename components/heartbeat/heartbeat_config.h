@@ -2,7 +2,9 @@
 #define HEARTBEAT_CONFIG
 
 #define USE_WATCHDOG    1
-#define HEARTBEAT_PERIOD_MSEC 500
+#define USE_LOGGING     1
+
+#define HEARTBEAT_PERIOD_MSEC 1000
 #define WATCHDOG_TIMEOUT_SEC   10
 
 #endif

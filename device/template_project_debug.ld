@@ -367,7 +367,7 @@ SECTIONS
         _pvHeapLimit = .;
     } > TFT_SDRAM
 
-     _StackSize = 0x1000;
+     _StackSize = 0x2000;
      /* Reserve space in memory for Stack */
     .heap2stackfill (NOLOAD) :
     {

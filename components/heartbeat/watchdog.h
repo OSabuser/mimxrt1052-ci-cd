@@ -44,8 +44,6 @@ typedef enum
  */
 wdog_reset_reason_t get_system_reset_reason(void);
 
-//TODO: create doc
-void print_system_reset_reason(wdog_reset_reason_t status);
 
 //TODO: create doc
 unsigned char get_watchdog_sec_timeout_value(void);

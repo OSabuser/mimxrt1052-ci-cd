@@ -96,25 +96,7 @@ wdog_reset_reason_t get_system_reset_reason(void)
     return reset_flag & (wRESET_BY_POWER_ON | wRESET_BY_TIMEOUT | wRESET_BY_SOFTWARE);
 }
 
-// TODO: create doc
-void print_system_reset_reason(wdog_reset_reason_t status)
-{
-    switch (status)
-    {
-    case wRESET_BY_POWER_ON:
-        DbgConsole_Printf("System was reseted by power on reset!\r\n");
-        break;
-    case wRESET_BY_TIMEOUT:
-        DbgConsole_Printf("System was reseted by watchdog timeout!\r\n");
-        break;
-    case wRESET_BY_SOFTWARE:
-        DbgConsole_Printf("System was reseted by software!\r\n");
-        break;
-    default:
-        DbgConsole_Printf("System was reseted by undefined reason!\r\n");
-        break;
-    }
-}
+
 
 void WDOG1_IRQHandler(void)
 {

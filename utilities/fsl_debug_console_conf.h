@@ -44,7 +44,7 @@
  *
  */
 #ifndef DEBUG_CONSOLE_TRANSMIT_BUFFER_LEN
-#define DEBUG_CONSOLE_TRANSMIT_BUFFER_LEN (512U)
+#define DEBUG_CONSOLE_TRANSMIT_BUFFER_LEN (256U)
 #endif /* DEBUG_CONSOLE_TRANSMIT_BUFFER_LEN */
 
 /*! @brief define the receive buffer length which is used to store the user input, buffer is enabled automatically when
@@ -55,7 +55,7 @@
  *
  */
 #ifndef DEBUG_CONSOLE_RECEIVE_BUFFER_LEN
-#define DEBUG_CONSOLE_RECEIVE_BUFFER_LEN (1024U)
+#define DEBUG_CONSOLE_RECEIVE_BUFFER_LEN (512U)
 #endif /* DEBUG_CONSOLE_RECEIVE_BUFFER_LEN */
 
 /*!@brief Whether enable the reliable TX function
@@ -63,7 +63,7 @@
  * When the macro is zero, the string of PRINTF will be thrown away after the transmit buffer is full.
  */
 #ifndef DEBUG_CONSOLE_TX_RELIABLE_ENABLE
-#define DEBUG_CONSOLE_TX_RELIABLE_ENABLE (1U)
+#define DEBUG_CONSOLE_TX_RELIABLE_ENABLE (0U)
 #endif /* DEBUG_CONSOLE_TX_RELIABLE_ENABLE */
 
 #else
@@ -74,7 +74,7 @@
  * If the macro is zero, the receive function of the debug console is disabled.
  */
 #ifndef DEBUG_CONSOLE_RX_ENABLE
-#define DEBUG_CONSOLE_RX_ENABLE (1U)
+#define DEBUG_CONSOLE_RX_ENABLE (0U)
 #endif /* DEBUG_CONSOLE_RX_ENABLE */
 
 /*!@brief define the MAX log length debug console support , that is when you call printf("log", x);, the log
@@ -83,7 +83,7 @@
  * the buffer is too big and current task stack size not big enough.
  */
 #ifndef DEBUG_CONSOLE_PRINTF_MAX_LOG_LEN
-#define DEBUG_CONSOLE_PRINTF_MAX_LOG_LEN (128U)
+#define DEBUG_CONSOLE_PRINTF_MAX_LOG_LEN (256U)
 #endif /* DEBUG_CONSOLE_PRINTF_MAX_LOG_LEN */
 
 /*!@brief define the buffer support buffer scanf log length, that is when you call scanf("log", &x);, the log

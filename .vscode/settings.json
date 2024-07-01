@@ -28,6 +28,14 @@
         "board.h": "c",
         "*.in": "c",
         "heartbeat_config.h": "c",
-        "fsl_component_serial_manager.h": "c"
+        "fsl_component_serial_manager.h": "c",
+        "elog.h": "c",
+        "cmsis_gcc.h": "c",
+        "milliseconds_delay.h": "c",
+        "limits": "c",
+        "clock_config.h": "c",
+        "pin_mux.h": "c",
+        "manufacturing_info.h": "c",
+        "rtc.h": "c"
     },
 }

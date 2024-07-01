@@ -70,7 +70,8 @@ target_compile_definitions(${EXECUTABLE} PRIVATE
         -DDEBUG 
         -DCPU_MIMXRT1052CVJ5B 
         -DCPU_MIMXRT1052CVJ5B_cm7
-        -DDEBUG_CONSOLE_TRANSFER_NON_BLOCKING 
+        -DDEBUG_CONSOLE_TRANSFER_NON_BLOCKING
+        -DSDK_DELAY_USE_DWT
 )
 
 
@@ -125,5 +126,5 @@ add_custom_command(
         COMMAND ${CMAKE_OBJCOPY} -O srec --srec-len=64 ${EXECUTABLE} ${PROJECT_NAME}.srec
 )
 
-include(${PROJECT_SOURCE_DIR}/deploy.cmake)
-deploy_target_to_board(${EXECUTABLE})     
+#include(${PROJECT_SOURCE_DIR}/deploy.cmake)
+#deploy_target_to_board(${EXECUTABLE})     
